@@ -1,0 +1,34 @@
+name: mcp-scout
+description: "Finds, installs and registers external MCP servers from GitHub into MCPToolkit by category."
+category: meta
+inputs:
+  - name: action
+    type: string
+    required: true
+    description: "list | install | search — list categories, install by name, search by keyword"
+  - name: name
+    type: string
+    required: false
+    description: "MCP server name to install (use with action=install)"
+  - name: category
+    type: string
+    required: false
+    description: "Filter by category: code | system | browser | data | text | all"
+  - name: keyword
+    type: string
+    required: false
+    description: "Keyword to search in catalog (use with action=search)"
+  - name: dry_run
+    type: bool
+    required: false
+    default: false
+    description: "Show what would be installed without actually installing"
+outputs: "MCP server cloned, pip/npm installed, registered in mcp.json and manifest.json"
+call: "python3 {tool_dir}/run.py --action {action} --name {name} --category {category}"
+tags: [meta, mcp, integration, registry]
+tested: true
+examples:
+  - "mcp-scout --action list"
+  - "mcp-scout --action list --category browser"
+  - "mcp-scout --action install --name playwright"
+  - "mcp-scout --action search --keyword filesystem"

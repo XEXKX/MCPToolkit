@@ -10,16 +10,45 @@
       "description": "Generates a new ready-to-use tool from a goal description. Produces tool.yaml + implementation + registers in manifest.",
       "category": "meta",
       "inputs": [
-        {"name": "goal",         "type": "string", "required": true,  "description": "What should the tool do? (natural language)"},
-        {"name": "start",        "type": "string", "required": false, "description": "Starting state / available inputs"},
-        {"name": "runtime",      "type": "string", "required": false, "description": "ps1 | py | js  (default: ps1)"},
-        {"name": "model",        "type": "string", "required": false, "description": "Claude model to use (default: claude-sonnet-4-6)"},
-        {"name": "constraints",  "type": "string", "required": false, "description": "Any restrictions or requirements"}
+        {
+          "name": "goal",
+          "type": "string",
+          "required": true,
+          "description": "What should the tool do? (natural language)"
+        },
+        {
+          "name": "start",
+          "type": "string",
+          "required": false,
+          "description": "Starting state / available inputs"
+        },
+        {
+          "name": "runtime",
+          "type": "string",
+          "required": false,
+          "description": "ps1 | py | js  (default: ps1)"
+        },
+        {
+          "name": "model",
+          "type": "string",
+          "required": false,
+          "description": "Claude model to use (default: claude-sonnet-4-6)"
+        },
+        {
+          "name": "constraints",
+          "type": "string",
+          "required": false,
+          "description": "Any restrictions or requirements"
+        }
       ],
       "outputs": "New tool folder in tools/, registered in manifest.json, committed to git",
       "call": "python {tool_dir}/run.py --goal {goal} --start {start} --runtime {runtime}",
       "tool_dir": "tools/tool-forge",
-      "tags": ["meta", "generation", "automation"],
+      "tags": [
+        "meta",
+        "generation",
+        "automation"
+      ],
       "tested": true,
       "examples": [
         "tool-forge --goal 'Stáhni všechny obrázky z URL a ulož je do složky' --runtime ps1",
@@ -31,21 +60,105 @@
       "description": "Initializes a local folder as a git repo, creates GitHub repository, sets up auto-push watcher and Windows Startup entry.",
       "category": "git",
       "inputs": [
-        {"name": "path",       "type": "string", "required": true,  "description": "Local folder path"},
-        {"name": "repo_name",  "type": "string", "required": false, "description": "GitHub repo name (default: folder name)"},
-        {"name": "token",      "type": "string", "required": false, "description": "GitHub PAT (or set GITHUB_TOKEN env var)"},
-        {"name": "private",    "type": "bool",   "required": false, "description": "Create private repo (default: false)"},
-        {"name": "skip_github","type": "bool",   "required": false, "description": "Local git only, skip GitHub API"}
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "Local folder path"
+        },
+        {
+          "name": "repo_name",
+          "type": "string",
+          "required": false,
+          "description": "GitHub repo name (default: folder name)"
+        },
+        {
+          "name": "token",
+          "type": "string",
+          "required": false,
+          "description": "GitHub PAT (or set GITHUB_TOKEN env var)"
+        },
+        {
+          "name": "private",
+          "type": "bool",
+          "required": false,
+          "description": "Create private repo (default: false)"
+        },
+        {
+          "name": "skip_github",
+          "type": "bool",
+          "required": false,
+          "description": "Local git only, skip GitHub API"
+        }
       ],
       "outputs": "Git repo initialized, GitHub repo created, auto-push configured, startup entry added",
       "call": "pwsh -File {tool_dir}/run.ps1 -Path {path} -RepoName {repo_name} -Token {token}",
       "tool_dir": "tools/new-git-repo",
-      "tags": ["git", "github", "automation", "setup"],
+      "tags": [
+        "git",
+        "github",
+        "automation",
+        "setup"
+      ],
       "tested": true,
       "examples": [
         "new-git-repo --path C:\\MujProjekt --token ghp_abc123",
         "new-git-repo --path C:\\MujProjekt --skip_github"
       ]
+    },
+    {
+      "name": "mcp-scout",
+      "description": "Finds, installs and registers external MCP servers from GitHub into MCPToolkit by category.",
+      "category": "meta",
+      "inputs": [
+        {
+          "name": "action",
+          "type": "string",
+          "required": true,
+          "description": "list | install | search — list categories, install by name, search by keyword"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "MCP server name to install (use with action=install)"
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "required": false,
+          "description": "Filter by category: code | system | browser | data | text | all"
+        },
+        {
+          "name": "keyword",
+          "type": "string",
+          "required": false,
+          "description": "Keyword to search in catalog (use with action=search)"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": false,
+          "description": "Show what would be installed without actually installing"
+        }
+      ],
+      "outputs": "MCP server cloned, pip/npm installed, registered in mcp.json and manifest.json",
+      "call": "python3 {tool_dir}/run.py --action {action} --name {name} --category {category}",
+      "tags": [
+        "meta",
+        "mcp",
+        "integration",
+        "registry"
+      ],
+      "tested": true,
+      "examples": [
+        "mcp-scout --action list",
+        "mcp-scout --action list --category browser",
+        "mcp-scout --action install --name playwright",
+        "mcp-scout --action search --keyword filesystem"
+      ],
+      "tool_dir": "tools/mcp-scout"
     }
   ]
 }

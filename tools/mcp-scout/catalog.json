@@ -1,0 +1,192 @@
+{
+  "_meta": {
+    "description": "Kurated index of free MCP servers. Update via tool-forge.",
+    "updated": "2026-06-12",
+    "excluded": ["video-generation", "image-generation"]
+  },
+  "servers": [
+    {
+      "name": "filesystem",
+      "display": "Filesystem MCP",
+      "description": "Read, write, move, search files and directories with full path control",
+      "category": "code",
+      "tags": ["files", "read", "write", "search"],
+      "repo": "modelcontextprotocol/servers",
+      "install": {"type": "npx", "package": "@modelcontextprotocol/server-filesystem"},
+      "mcp_config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-filesystem", "{allowed_dirs}"]
+      }
+    },
+    {
+      "name": "git",
+      "display": "Git MCP",
+      "description": "Full git operations: log, diff, commit, branch, status via MCP",
+      "category": "code",
+      "tags": ["git", "version-control", "diff", "commit"],
+      "repo": "modelcontextprotocol/servers",
+      "install": {"type": "uvx", "package": "mcp-server-git"},
+      "mcp_config": {
+        "command": "uvx",
+        "args": ["mcp-server-git", "--repository", "{repo_path}"]
+      }
+    },
+    {
+      "name": "github",
+      "display": "GitHub MCP",
+      "description": "Manage GitHub repos, issues, PRs, search code via GitHub API",
+      "category": "code",
+      "tags": ["github", "repos", "issues", "prs"],
+      "repo": "github/github-mcp-server",
+      "install": {"type": "npx", "package": "@github/github-mcp-server", "requires_env": "GITHUB_PERSONAL_ACCESS_TOKEN"},
+      "mcp_config": {
+        "command": "npx",
+        "args": ["-y", "@github/github-mcp-server", "stdio"],
+        "env": {"GITHUB_PERSONAL_ACCESS_TOKEN": "{GITHUB_TOKEN}"}
+      }
+    },
+    {
+      "name": "fetch",
+      "display": "Fetch MCP",
+      "description": "Fetch any URL and return content as text, HTML or markdown",
+      "category": "code",
+      "tags": ["http", "fetch", "web", "scraping"],
+      "repo": "modelcontextprotocol/servers",
+      "install": {"type": "uvx", "package": "mcp-server-fetch"},
+      "mcp_config": {
+        "command": "uvx",
+        "args": ["mcp-server-fetch"]
+      }
+    },
+    {
+      "name": "desktop-commander",
+      "display": "Desktop Commander MCP",
+      "description": "Execute shell commands, manage processes, edit files on Windows and Linux",
+      "category": "system",
+      "tags": ["shell", "terminal", "windows", "linux", "processes"],
+      "repo": "wonderwhy-er/DesktopCommanderMCP",
+      "install": {"type": "npx", "package": "@wonderwhy-er/desktop-commander"},
+      "mcp_config": {
+        "command": "npx",
+        "args": ["-y", "@wonderwhy-er/desktop-commander"]
+      }
+    },
+    {
+      "name": "windows-control",
+      "display": "Windows Control MCP",
+      "description": "Control Windows 11 UI: click, type, screenshot, open apps via PowerShell automation",
+      "category": "system",
+      "tags": ["windows", "automation", "gui", "screenshot", "powershell"],
+      "repo": "Cheffromspace/windows-control-mcp",
+      "install": {"type": "git+pip", "requires": ["pyautogui", "pillow"]},
+      "mcp_config": {
+        "command": "python3",
+        "args": ["{install_dir}/server.py"]
+      }
+    },
+    {
+      "name": "playwright",
+      "display": "Playwright MCP",
+      "description": "Control a real browser: navigate, click, fill forms, screenshot, extract content",
+      "category": "browser",
+      "tags": ["browser", "playwright", "automation", "screenshot", "forms"],
+      "repo": "microsoft/playwright-mcp",
+      "install": {"type": "npx", "package": "@playwright/mcp"},
+      "mcp_config": {
+        "command": "npx",
+        "args": ["-y", "@playwright/mcp@latest"]
+      }
+    },
+    {
+      "name": "puppeteer",
+      "display": "Puppeteer MCP",
+      "description": "Headless Chrome: navigate, screenshot, scrape and interact with web pages",
+      "category": "browser",
+      "tags": ["browser", "puppeteer", "chrome", "headless", "scraping"],
+      "repo": "modelcontextprotocol/servers",
+      "install": {"type": "npx", "package": "@modelcontextprotocol/server-puppeteer"},
+      "mcp_config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+      }
+    },
+    {
+      "name": "sqlite",
+      "display": "SQLite MCP",
+      "description": "Query, create and manage SQLite databases with full SQL support",
+      "category": "data",
+      "tags": ["sqlite", "database", "sql", "query"],
+      "repo": "modelcontextprotocol/servers",
+      "install": {"type": "uvx", "package": "mcp-server-sqlite"},
+      "mcp_config": {
+        "command": "uvx",
+        "args": ["mcp-server-sqlite", "--db-path", "{db_path}"]
+      }
+    },
+    {
+      "name": "postgres",
+      "display": "PostgreSQL MCP",
+      "description": "Connect and query PostgreSQL databases with schema inspection",
+      "category": "data",
+      "tags": ["postgres", "database", "sql", "query"],
+      "repo": "modelcontextprotocol/servers",
+      "install": {"type": "npx", "package": "@modelcontextprotocol/server-postgres"},
+      "mcp_config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-postgres", "{connection_string}"]
+      }
+    },
+    {
+      "name": "excel-mcp",
+      "display": "Excel / CSV MCP",
+      "description": "Read, write and analyze Excel and CSV files with formula and chart support",
+      "category": "data",
+      "tags": ["excel", "csv", "spreadsheet", "data"],
+      "repo": "haris-musa/excel-mcp-server",
+      "install": {"type": "pip", "package": "excel-mcp-server"},
+      "mcp_config": {
+        "command": "python3",
+        "args": ["-m", "excel_mcp_server"]
+      }
+    },
+    {
+      "name": "memory",
+      "display": "Memory MCP",
+      "description": "Persistent key-value memory store for agents to save and recall facts across sessions",
+      "category": "text",
+      "tags": ["memory", "persistence", "knowledge", "recall"],
+      "repo": "modelcontextprotocol/servers",
+      "install": {"type": "npx", "package": "@modelcontextprotocol/server-memory"},
+      "mcp_config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-memory"]
+      }
+    },
+    {
+      "name": "markdownify",
+      "display": "Markdownify MCP",
+      "description": "Convert any file or URL to clean Markdown: PDF, DOCX, HTML, images with OCR",
+      "category": "text",
+      "tags": ["markdown", "pdf", "docx", "convert", "ocr"],
+      "repo": "zcaceres/markdownify-mcp",
+      "install": {"type": "npx", "package": "markdownify-mcp"},
+      "mcp_config": {
+        "command": "npx",
+        "args": ["-y", "markdownify-mcp"]
+      }
+    },
+    {
+      "name": "everything-search",
+      "display": "Everything Search MCP (Windows)",
+      "description": "Instantly search any file on Windows using Everything search engine by voidtools",
+      "category": "text",
+      "tags": ["search", "windows", "files", "everything"],
+      "repo": "mario-dg/everything-mcp",
+      "install": {"type": "pip", "package": "everything-mcp", "requires_app": "Everything (voidtools)"},
+      "mcp_config": {
+        "command": "python3",
+        "args": ["-m", "everything_mcp"]
+      }
+    }
+  ]
+}

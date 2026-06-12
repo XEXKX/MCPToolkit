@@ -1,0 +1,27 @@
+# {{ToolName}} — {{one-line description}}
+# Část MCPToolkit · github.com/XEXKX/MCPToolkit
+
+param(
+    [Parameter(Mandatory)][string]${{RequiredParam}},
+    [string]${{OptionalParam}} = "{{default}}"
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+# ── Validace vstupů ───────────────────────────────────────────────────────────
+if (-not ({{validation_condition}})) {
+    Write-Error "{{error_message}}"
+    exit 1
+}
+
+# ── Hlavní logika ─────────────────────────────────────────────────────────────
+try {
+    # {{implementation}}
+
+    Write-Host "✓ {{success message}}"
+    exit 0
+} catch {
+    Write-Error "Chyba: $_"
+    exit 1
+}

@@ -1,0 +1,39 @@
+# Forge Conditions — strojově čitelná pravidla validity MCP nástroje
+# Používá validate.py při každém vytvoření nového nástroje.
+
+required_files:
+  - tool.yaml
+  # implementační soubor: run.ps1 | run.py | run.js (alespoň jeden)
+  - run
+
+tool_yaml_required_fields:
+  - name
+  - description
+  - inputs
+  - outputs
+  - call
+  - tags
+  - tested
+
+tool_yaml_rules:
+  description_max_chars: 120
+  description_starts_with_verb: true   # musí začínat velkým nebo malým písmenem slovesa
+  call_contains_tool_dir: true         # {tool_dir} placeholder povinný
+  call_contains_no_unfilled: true      # žádné nevyplněné {{...}} placeholdery
+  name_is_snake_case: true             # pouze a-z, 0-9, _
+  name_is_unique_in_manifest: true     # nesmí existovat v manifest.json
+  tags_min_count: 1
+  tags_max_count: 5
+
+input_rules:
+  required_inputs_have_type: true
+  required_inputs_have_description: true
+  optional_inputs_have_default_or_description: true
+
+implementation_rules:
+  file_not_empty: true                 # run.* nesmí být prázdný
+  no_unfilled_template_placeholders: true  # žádné {{...}} v implementaci
+
+post_creation:
+  must_register_in_manifest: true
+  must_git_commit: true

@@ -1,5 +1,5 @@
 name: new-git-repo
-description: "Initializes a local folder as a git repo, optionally creates GitHub repo via API, and sets up auto-push watcher with Windows Startup entry."
+description: "Initializes a folder as git repo, creates GitHub repo, and sets up auto-push watcher."
 category: git
 inputs:
   - name: path

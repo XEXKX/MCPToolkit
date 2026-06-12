@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+"""{{ToolName}} — {{one-line description}}
+Část MCPToolkit · github.com/XEXKX/MCPToolkit
+"""
+import argparse
+import sys
+
+def main():
+    parser = argparse.ArgumentParser(description="{{description}}")
+    parser.add_argument("--{{required_param}}", required=True,  help="{{description}}")
+    parser.add_argument("--{{optional_param}}", default="{{default}}", help="{{description}}")
+    args = parser.parse_args()
+
+    # ── Validace ──────────────────────────────────────────────────────────────
+    # {{validation}}
+
+    # ── Hlavní logika ─────────────────────────────────────────────────────────
+    try:
+        # {{implementation}}
+        print(f"✓ {{success message}}")
+        sys.exit(0)
+    except Exception as e:
+        print(f"Chyba: {e}", file=sys.stderr)
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

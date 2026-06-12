@@ -1,0 +1,19 @@
+name: {{snake_case_name}}
+description: "{{Verb + what it does, max 120 chars}}"
+category: {{git|file|web|data|system|meta|automation}}
+inputs:
+  - name: {{param_name}}
+    type: string
+    required: true
+    description: "{{what this param means}}"
+  # - name: optional_param
+  #   type: string
+  #   required: false
+  #   default: "default_value"
+  #   description: "..."
+outputs: "{{What the tool produces or does}}"
+call: "{{runtime_command}} {tool_dir}/run.{{ext}} {{--Param {param_name}}}"
+tags: [{{tag1}}, {{tag2}}]
+tested: false
+examples:
+  - "{{example invocation 1}}"

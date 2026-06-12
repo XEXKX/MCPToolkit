@@ -1,33 +1,21 @@
 name: tool-forge
-description: "Generates a new ready-to-use tool from a natural language goal. Produces tool.yaml + implementation + registers in manifest."
+description: "Validates and registers a new tool folder into MCPToolkit manifest — run after the agent creates the tool files."
 category: meta
 inputs:
-  - name: goal
+  - name: tool_dir
     type: string
     required: true
-    description: "What should the tool do? Natural language."
-  - name: start
+    description: "Path to the new tool folder (absolute or relative to toolkit root)"
+  - name: action
     type: string
     required: false
-    description: "Starting state — available inputs, data sources, environment"
-  - name: runtime
-    type: string
-    required: false
-    default: ps1
-    description: "Implementation language: ps1 | py | js"
-  - name: constraints
-    type: string
-    required: false
-    description: "Restrictions, requirements, dependencies to avoid"
-  - name: model
-    type: string
-    required: false
-    default: claude-sonnet-4-6
-    description: "Claude model for generation"
-outputs: "New folder in tools/, registered in manifest.json, committed to git"
-call: "python {tool_dir}/run.py --goal {goal} --start {start} --runtime {runtime} --constraints {constraints}"
-tags: [meta, generation, automation]
+    default: "register"
+    description: "validate | register (default: register — runs validate first, then registers)"
+outputs: "Tool validated against forge-conditions and registered in manifest.json + git committed"
+call: "python3 {tool_dir}/../tool-forge/register.py {tool_dir}"
+tags: [meta, forge, validation, registration]
 tested: true
 examples:
-  - "python run.py --goal 'Stáhni obrázky z URL do složky' --runtime ps1"
-  - "python run.py --goal 'Parsuj CSV a vrať statistiky' --runtime py"
+  - "tool-forge --tool_dir tools/my-new-tool"
+  - "tool-forge --tool_dir tools/my-new-tool --action validate"
+note: "Agent creates tool files manually following FORGE.md, then calls this tool to validate+register."
