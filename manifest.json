@@ -1,9 +1,11 @@
 {
   "name": "MCPToolkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Personal tool library — portable across AI agents via MCP",
   "author": "XEXKX",
   "repo": "https://github.com/XEXKX/MCPToolkit",
+  "total_tools": 3,
+  "total_mcp_servers": 43,
   "tools": [
     {
       "name": "tool-forge",
@@ -161,963 +163,594 @@
       "tool_dir": "tools/mcp-scout"
     }
   ],
-  "external_mcps": [
-    {
-      "name": "filesystem",
-      "display": "Filesystem MCP",
-      "description": "Read, write, move, search files and directories with configurable path access control",
-      "category": "code",
-      "tags": [
-        "files",
-        "read",
-        "write",
-        "search",
-        "official"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-filesystem",
-          "C:\\Users\\elize"
-        ]
-      }
-    },
-    {
-      "name": "git",
-      "display": "Git MCP",
-      "description": "Full git operations: log, diff, commit, branch, status, blame via MCP",
-      "category": "code",
-      "tags": [
-        "git",
-        "version-control",
-        "diff",
-        "commit",
-        "official"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "uvx",
-        "args": [
-          "mcp-server-git",
-          "--repository",
-          "C:\\MCPToolkit"
-        ]
-      }
-    },
+  "mcp_servers": [
     {
       "name": "fetch",
-      "display": "Fetch MCP",
+      "type": "mcp-server",
+      "category": "code",
       "description": "Fetch any URL and return content as clean text, HTML or markdown for LLM consumption",
-      "category": "code",
-      "tags": [
-        "http",
-        "fetch",
-        "web",
-        "scraping",
-        "official"
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
       ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "uvx",
-        "args": [
-          "mcp-server-fetch"
-        ]
-      }
-    },
-    {
-      "name": "sequential-thinking",
-      "display": "Sequential Thinking MCP",
-      "description": "Dynamic and reflective problem-solving through structured thought sequences",
-      "category": "code",
-      "tags": [
-        "thinking",
-        "reasoning",
-        "planning",
-        "official"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-sequential-thinking"
-        ]
-      }
-    },
-    {
-      "name": "e2b",
-      "display": "E2B Code Sandbox MCP",
-      "description": "Run any code (Python, JS, bash) in secure cloud sandboxes without local setup",
-      "category": "code",
-      "tags": [
-        "sandbox",
-        "code-execution",
-        "python",
-        "javascript",
-        "cloud"
-      ],
-      "repo": "https://github.com/e2b-dev/mcp-server",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@e2b/mcp-server"
-        ],
-        "env": {
-          "E2B_API_KEY": "{E2B_API_KEY}"
-        }
-      }
+      "installed": true
     },
     {
       "name": "dbt",
-      "display": "dbt MCP",
-      "description": "Official dbt integration — run models, test, compile and explore dbt projects via MCP",
+      "type": "mcp-server",
       "category": "code",
-      "tags": [
-        "dbt",
-        "analytics",
-        "sql",
-        "data-engineering",
-        "official"
+      "description": "Official dbt integration — run models, test, compile and explore dbt projects via MCP",
+      "command": "uvx",
+      "args": [
+        "dbt-mcp"
       ],
-      "repo": "https://github.com/dbt-labs/dbt-mcp",
-      "mcp_config": {
-        "command": "uvx",
-        "args": [
-          "dbt-mcp"
-        ]
-      }
+      "installed": true
     },
     {
       "name": "time",
-      "display": "Time MCP",
-      "description": "Get current time and convert between timezones — simple but useful utility",
+      "type": "mcp-server",
       "category": "code",
-      "tags": [
-        "time",
-        "timezone",
-        "utility",
-        "official"
+      "description": "Get current time and convert between timezones — simple but useful utility",
+      "command": "uvx",
+      "args": [
+        "mcp-server-time"
       ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "uvx",
-        "args": [
-          "mcp-server-time"
-        ]
-      }
-    },
-    {
-      "name": "desktop-commander",
-      "display": "Desktop Commander MCP",
-      "description": "Execute shell commands, manage processes, diff and edit files on Windows and Linux",
-      "category": "system",
-      "tags": [
-        "shell",
-        "terminal",
-        "windows",
-        "linux",
-        "processes"
-      ],
-      "repo": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@wonderwhy-er/desktop-commander"
-        ]
-      }
-    },
-    {
-      "name": "docker",
-      "display": "Docker MCP",
-      "description": "Run and manage Docker containers, compose stacks, inspect logs and images",
-      "category": "system",
-      "tags": [
-        "docker",
-        "containers",
-        "devops",
-        "compose"
-      ],
-      "repo": "https://github.com/QuantGeekDev/docker-mcp",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "docker-mcp"
-        ]
-      }
-    },
-    {
-      "name": "kubernetes",
-      "display": "Kubernetes MCP",
-      "description": "Connect to Kubernetes cluster — manage pods, deployments, services and namespaces",
-      "category": "system",
-      "tags": [
-        "kubernetes",
-        "k8s",
-        "containers",
-        "devops",
-        "cloud"
-      ],
-      "repo": "https://github.com/Flux159/mcp-server-kubernetes",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "mcp-server-kubernetes"
-        ]
-      }
-    },
-    {
-      "name": "cloudflare",
-      "display": "Cloudflare MCP",
-      "description": "Deploy, configure and interrogate resources on the Cloudflare developer platform",
-      "category": "system",
-      "tags": [
-        "cloudflare",
-        "cdn",
-        "workers",
-        "cloud",
-        "official"
-      ],
-      "repo": "https://github.com/cloudflare/mcp-server-cloudflare",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@cloudflare/mcp-server-cloudflare"
-        ],
-        "env": {
-          "CLOUDFLARE_API_TOKEN": "{CLOUDFLARE_API_TOKEN}"
-        }
-      }
-    },
-    {
-      "name": "playwright",
-      "display": "Playwright MCP",
-      "description": "Control a real browser: navigate, click, fill forms, screenshot, extract content from any site",
-      "category": "browser",
-      "tags": [
-        "browser",
-        "playwright",
-        "automation",
-        "screenshot",
-        "official"
-      ],
-      "repo": "https://github.com/microsoft/playwright-mcp",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@playwright/mcp@latest"
-        ]
-      }
-    },
-    {
-      "name": "puppeteer",
-      "display": "Puppeteer MCP",
-      "description": "Headless Chrome: navigate, screenshot, scrape and interact with web pages",
-      "category": "browser",
-      "tags": [
-        "browser",
-        "puppeteer",
-        "chrome",
-        "headless",
-        "scraping"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-puppeteer"
-        ]
-      }
-    },
-    {
-      "name": "firecrawl",
-      "display": "Firecrawl MCP",
-      "description": "Extract structured web data — crawl sites, convert to markdown, handle JS-heavy pages",
-      "category": "browser",
-      "tags": [
-        "scraping",
-        "crawl",
-        "markdown",
-        "web",
-        "official"
-      ],
-      "repo": "https://github.com/mendableai/firecrawl-mcp-server",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "firecrawl-mcp"
-        ],
-        "env": {
-          "FIRECRAWL_API_KEY": "{FIRECRAWL_API_KEY}"
-        }
-      }
-    },
-    {
-      "name": "exa",
-      "display": "Exa Search MCP",
-      "description": "Neural search engine optimised for AI agents — semantic and keyword search over the web",
-      "category": "browser",
-      "tags": [
-        "search",
-        "semantic",
-        "web",
-        "research",
-        "official"
-      ],
-      "repo": "https://github.com/exa-labs/exa-mcp-server",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "exa-mcp-server"
-        ],
-        "env": {
-          "EXA_API_KEY": "{EXA_API_KEY}"
-        }
-      }
-    },
-    {
-      "name": "tavily",
-      "display": "Tavily Search MCP",
-      "description": "Real-time web search and content extraction optimised for AI agents",
-      "category": "browser",
-      "tags": [
-        "search",
-        "web",
-        "research",
-        "real-time",
-        "official"
-      ],
-      "repo": "https://github.com/tavily-ai/tavily-mcp",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "tavily-mcp@0.1.4"
-        ],
-        "env": {
-          "TAVILY_API_KEY": "{TAVILY_API_KEY}"
-        }
-      }
-    },
-    {
-      "name": "apify",
-      "display": "Apify MCP",
-      "description": "Use 3000+ pre-built cloud scrapers to extract data from websites, e-commerce and social media",
-      "category": "browser",
-      "tags": [
-        "scraping",
-        "automation",
-        "cloud",
-        "data-extraction",
-        "official"
-      ],
-      "repo": "https://github.com/apify/actors-mcp-server",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@apify/actors-mcp-server"
-        ],
-        "env": {
-          "APIFY_TOKEN": "{APIFY_TOKEN}"
-        }
-      }
-    },
-    {
-      "name": "agentql",
-      "display": "AgentQL MCP",
-      "description": "Get structured data from unstructured web pages using natural language selectors",
-      "category": "browser",
-      "tags": [
-        "scraping",
-        "structured-data",
-        "web",
-        "nlp"
-      ],
-      "repo": "https://github.com/tinyfish-io/agentql-mcp",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "agentql-mcp"
-        ],
-        "env": {
-          "AGENTQL_API_KEY": "{AGENTQL_API_KEY}"
-        }
-      }
-    },
-    {
-      "name": "bright-data",
-      "display": "Bright Data MCP",
-      "description": "Access and interact with any public web data — scraping infrastructure with proxy rotation",
-      "category": "browser",
-      "tags": [
-        "scraping",
-        "proxy",
-        "web",
-        "data-extraction",
-        "official"
-      ],
-      "repo": "https://github.com/brightdata/brightdata-mcp",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@brightdata/mcp"
-        ],
-        "env": {
-          "BRIGHTDATA_API_TOKEN": "{BRIGHTDATA_API_TOKEN}"
-        }
-      }
-    },
-    {
-      "name": "a2asearch",
-      "display": "A2A Search MCP",
-      "description": "Search 4800+ MCP servers, AI agents and CLI tools from a single index",
-      "category": "browser",
-      "tags": [
-        "search",
-        "mcp-registry",
-        "discovery",
-        "agents"
-      ],
-      "repo": "https://github.com/tadas-github/a2asearch-mcp",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "a2asearch-mcp"
-        ]
-      }
-    },
-    {
-      "name": "sqlite",
-      "display": "SQLite MCP",
-      "description": "Query, create and manage SQLite databases — full SQL support and schema inspection",
-      "category": "data",
-      "tags": [
-        "sqlite",
-        "database",
-        "sql",
-        "query",
-        "official"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "uvx",
-        "args": [
-          "mcp-server-sqlite",
-          "--db-path",
-          "C:\\Users\\elize\\data.db"
-        ]
-      }
-    },
-    {
-      "name": "postgres",
-      "display": "PostgreSQL MCP",
-      "description": "Connect and query PostgreSQL databases — schema inspection, read/write queries",
-      "category": "data",
-      "tags": [
-        "postgres",
-        "database",
-        "sql",
-        "query",
-        "official"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-postgres",
-          "postgresql://localhost/mydb"
-        ]
-      }
+      "installed": true
     },
     {
       "name": "excel-mcp",
-      "display": "Excel / CSV MCP",
+      "type": "mcp-server",
+      "category": "data",
       "description": "Read, write and analyze Excel and CSV files — formulas, charts, worksheet management",
-      "category": "data",
-      "tags": [
-        "excel",
-        "csv",
-        "spreadsheet",
-        "data"
+      "command": "python3",
+      "args": [
+        "-m",
+        "excel_mcp_server"
       ],
-      "repo": "https://github.com/haris-musa/excel-mcp-server",
-      "mcp_config": {
-        "command": "python3",
-        "args": [
-          "-m",
-          "excel_mcp_server"
-        ]
-      }
-    },
-    {
-      "name": "mongodb",
-      "display": "MongoDB MCP",
-      "description": "Connect to MongoDB Atlas — query collections, manage documents and indexes",
-      "category": "data",
-      "tags": [
-        "mongodb",
-        "nosql",
-        "database",
-        "atlas"
-      ],
-      "repo": "https://github.com/mongodb-js/mongodb-mcp-server",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@mongodb-js/mongodb-mcp-server"
-        ],
-        "env": {
-          "MDB_MCP_CONNECTION_STRING": "{MDB_CONNECTION_STRING}"
-        }
-      }
+      "installed": true
     },
     {
       "name": "duckdb",
-      "display": "MotherDuck / DuckDB MCP",
-      "description": "Analyze data with MotherDuck cloud and local DuckDB — SQL over CSV, Parquet, JSON",
+      "type": "mcp-server",
       "category": "data",
-      "tags": [
-        "duckdb",
-        "analytics",
-        "sql",
-        "parquet",
-        "official"
+      "description": "Analyze data with MotherDuck cloud and local DuckDB — SQL over CSV, Parquet, JSON",
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp_server_motherduck"
       ],
-      "repo": "https://github.com/motherduckdb/mcp-server-motherduck",
-      "mcp_config": {
-        "command": "python3",
-        "args": [
-          "-m",
-          "mcp_server_motherduck"
-        ],
-        "env": {
-          "motherduck_token": "{MOTHERDUCK_TOKEN}"
-        }
-      }
+      "installed": true,
+      "env_required": [
+        "motherduck_token"
+      ]
     },
     {
       "name": "qdrant",
-      "display": "Qdrant Vector DB MCP",
+      "type": "mcp-server",
+      "category": "data",
       "description": "Semantic memory layer using Qdrant vector search — store and retrieve by meaning",
-      "category": "data",
-      "tags": [
-        "vector-db",
-        "semantic-search",
-        "embeddings",
-        "memory",
-        "official"
+      "command": "uvx",
+      "args": [
+        "mcp-server-qdrant"
       ],
-      "repo": "https://github.com/qdrant/mcp-server-qdrant",
-      "mcp_config": {
-        "command": "uvx",
-        "args": [
-          "mcp-server-qdrant"
-        ],
-        "env": {
-          "QDRANT_URL": "http://localhost:6333",
-          "COLLECTION_NAME": "mcp-memory"
-        }
-      }
-    },
-    {
-      "name": "supabase",
-      "display": "Supabase MCP",
-      "description": "Manage Supabase projects — database queries, auth, edge functions, storage via API",
-      "category": "data",
-      "tags": [
-        "supabase",
-        "postgres",
-        "auth",
-        "storage",
-        "official"
-      ],
-      "repo": "https://github.com/supabase-community/supabase-mcp",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@supabase/mcp-server-supabase",
-          "--supabase-access-token",
-          "{SUPABASE_ACCESS_TOKEN}"
-        ]
-      }
+      "installed": true,
+      "env_required": [
+        "QDRANT_URL",
+        "COLLECTION_NAME"
+      ]
     },
     {
       "name": "clickhouse",
-      "display": "ClickHouse MCP",
-      "description": "Query ClickHouse analytical database — run SQL and explore large datasets at speed",
+      "type": "mcp-server",
       "category": "data",
-      "tags": [
-        "clickhouse",
-        "analytics",
-        "olap",
-        "sql",
-        "official"
+      "description": "Query ClickHouse analytical database — run SQL and explore large datasets at speed",
+      "command": "uvx",
+      "args": [
+        "mcp-clickhouse"
       ],
-      "repo": "https://github.com/ClickHouse/mcp-clickhouse",
-      "mcp_config": {
-        "command": "uvx",
-        "args": [
-          "mcp-clickhouse"
-        ],
-        "env": {
-          "CLICKHOUSE_HOST": "{CLICKHOUSE_HOST}",
-          "CLICKHOUSE_USER": "default",
-          "CLICKHOUSE_PASSWORD": "{CLICKHOUSE_PASSWORD}"
-        }
-      }
+      "installed": true,
+      "env_required": [
+        "CLICKHOUSE_HOST",
+        "CLICKHOUSE_USER",
+        "CLICKHOUSE_PASSWORD"
+      ]
     },
     {
       "name": "meilisearch",
-      "display": "Meilisearch MCP",
-      "description": "Full-text and semantic search via Meilisearch — index documents, run queries",
+      "type": "mcp-server",
       "category": "data",
-      "tags": [
-        "search",
-        "full-text",
-        "indexing",
-        "meilisearch",
-        "official"
+      "description": "Full-text and semantic search via Meilisearch — index documents, run queries",
+      "command": "python3",
+      "args": [
+        "-m",
+        "meilisearch_mcp"
       ],
-      "repo": "https://github.com/meilisearch/meilisearch-mcp",
-      "mcp_config": {
-        "command": "python3",
-        "args": [
-          "-m",
-          "meilisearch_mcp"
-        ],
-        "env": {
-          "MEILI_HTTP_ADDR": "{MEILI_URL}",
-          "MEILI_MASTER_KEY": "{MEILI_MASTER_KEY}"
-        }
-      }
+      "installed": true,
+      "env_required": [
+        "MEILI_HTTP_ADDR",
+        "MEILI_MASTER_KEY"
+      ]
     },
     {
       "name": "snowflake",
-      "display": "Snowflake MCP",
-      "description": "Query Snowflake cloud data warehouse — run SQL, inspect schemas, manage tables",
+      "type": "mcp-server",
       "category": "data",
-      "tags": [
-        "snowflake",
-        "data-warehouse",
-        "sql",
-        "cloud"
+      "description": "Query Snowflake cloud data warehouse — run SQL, inspect schemas, manage tables",
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp_snowflake_server"
       ],
-      "repo": "https://github.com/isaacwasserman/mcp-snowflake-server",
-      "mcp_config": {
-        "command": "python3",
-        "args": [
-          "-m",
-          "mcp_snowflake_server"
-        ],
-        "env": {
-          "SNOWFLAKE_ACCOUNT": "{SNOWFLAKE_ACCOUNT}",
-          "SNOWFLAKE_USER": "{SNOWFLAKE_USER}",
-          "SNOWFLAKE_PASSWORD": "{SNOWFLAKE_PASSWORD}"
-        }
-      }
-    },
-    {
-      "name": "memory",
-      "display": "Memory MCP",
-      "description": "Persistent knowledge graph memory — agents save and recall facts across sessions",
-      "category": "text",
-      "tags": [
-        "memory",
-        "persistence",
-        "knowledge-graph",
-        "recall",
-        "official"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-memory"
-        ]
-      }
+      "installed": true,
+      "env_required": [
+        "SNOWFLAKE_ACCOUNT",
+        "SNOWFLAKE_USER",
+        "SNOWFLAKE_PASSWORD"
+      ]
     },
     {
       "name": "everything-search",
-      "display": "Everything Search MCP (Windows)",
-      "description": "Instantly search any file on Windows using Everything search engine by voidtools",
+      "type": "mcp-server",
       "category": "text",
-      "tags": [
-        "search",
-        "windows",
-        "files",
-        "everything",
-        "fast"
+      "description": "Instantly search any file on Windows using Everything search engine by voidtools",
+      "command": "python3",
+      "args": [
+        "-m",
+        "everything_mcp"
       ],
-      "repo": "https://github.com/mario-dg/everything-mcp",
-      "mcp_config": {
-        "command": "python3",
-        "args": [
-          "-m",
-          "everything_mcp"
-        ]
-      }
+      "installed": true
     },
     {
       "name": "obsidian",
-      "display": "Obsidian MCP",
-      "description": "Read, write and search Obsidian notes — integrates via Obsidian REST API plugin",
+      "type": "mcp-server",
       "category": "text",
-      "tags": [
-        "obsidian",
-        "notes",
-        "markdown",
-        "knowledge-base"
+      "description": "Read, write and search Obsidian notes — integrates via Obsidian REST API plugin",
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp_obsidian"
       ],
-      "repo": "https://github.com/MarkusPfundstein/mcp-obsidian",
-      "mcp_config": {
-        "command": "python3",
-        "args": [
-          "-m",
-          "mcp_obsidian"
-        ],
-        "env": {
-          "OBSIDIAN_API_KEY": "{OBSIDIAN_TOKEN}",
-          "OBSIDIAN_HOST": "http://localhost:27123"
-        }
-      }
+      "installed": true,
+      "env_required": [
+        "OBSIDIAN_API_KEY",
+        "OBSIDIAN_HOST"
+      ]
     },
     {
       "name": "mcp-pdf-reader",
-      "display": "PDF Reader MCP",
+      "type": "mcp-server",
+      "category": "text",
       "description": "Extract text and structure from PDF files — full page, range or keyword search",
-      "category": "text",
-      "tags": [
-        "pdf",
-        "read",
-        "text-extraction",
-        "documents"
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp_pdf_reader"
       ],
-      "repo": "https://github.com/sylvainpelissier/mcp-pdf-reader",
-      "mcp_config": {
-        "command": "python3",
-        "args": [
-          "-m",
-          "mcp_pdf_reader"
-        ]
-      }
-    },
-    {
-      "name": "context7",
-      "display": "Context7 MCP",
-      "description": "Fetch up-to-date library documentation and code examples directly into agent context",
-      "category": "text",
-      "tags": [
-        "documentation",
-        "libraries",
-        "code",
-        "context"
-      ],
-      "repo": "https://github.com/upstash/context7",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@upstash/context7-mcp"
-        ]
-      }
-    },
-    {
-      "name": "notion",
-      "display": "Notion MCP",
-      "description": "Official Notion MCP — read, write, search pages and databases in your Notion workspace",
-      "category": "productivity",
-      "tags": [
-        "notion",
-        "notes",
-        "wiki",
-        "database",
-        "official"
-      ],
-      "repo": "https://github.com/makenotion/notion-mcp-server",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@notionhq/notion-mcp-server"
-        ],
-        "env": {
-          "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer {NOTION_TOKEN}\", \"Notion-Version\": \"2022-06-28\"}"
-        }
-      }
-    },
-    {
-      "name": "slack",
-      "display": "Slack MCP",
-      "description": "Read and post messages, search Slack channels and workspaces via bot token",
-      "category": "productivity",
-      "tags": [
-        "slack",
-        "messaging",
-        "communication",
-        "team"
-      ],
-      "repo": "https://github.com/korotovsky/slack-mcp-server",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "slack-mcp-server"
-        ],
-        "env": {
-          "SLACK_BOT_TOKEN": "{SLACK_BOT_TOKEN}"
-        }
-      }
-    },
-    {
-      "name": "linear",
-      "display": "Linear MCP",
-      "description": "Manage Linear projects — create and update issues, search, manage cycles",
-      "category": "productivity",
-      "tags": [
-        "linear",
-        "project-management",
-        "issues",
-        "agile"
-      ],
-      "repo": "https://github.com/tacticlaunch/mcp-linear",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@tacticlaunch/mcp-linear"
-        ],
-        "env": {
-          "LINEAR_API_TOKEN": "{LINEAR_API_TOKEN}"
-        }
-      }
-    },
-    {
-      "name": "todoist",
-      "display": "Todoist MCP",
-      "description": "Full Todoist REST API integration — manage tasks, projects, labels and filters",
-      "category": "productivity",
-      "tags": [
-        "todoist",
-        "tasks",
-        "todo",
-        "productivity"
-      ],
-      "repo": "https://github.com/stanislavlysenko0912/todoist-mcp-server",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "todoist-mcp-server"
-        ],
-        "env": {
-          "TODOIST_API_TOKEN": "{TODOIST_API_TOKEN}"
-        }
-      }
-    },
-    {
-      "name": "google-drive",
-      "display": "Google Drive MCP",
-      "description": "Read, search and manage Google Drive files and folders",
-      "category": "productivity",
-      "tags": [
-        "google-drive",
-        "files",
-        "documents",
-        "storage"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-gdrive"
-        ]
-      }
-    },
-    {
-      "name": "google-maps",
-      "display": "Google Maps MCP",
-      "description": "Geocoding, directions, place search and distance matrix via Google Maps API",
-      "category": "productivity",
-      "tags": [
-        "maps",
-        "geocoding",
-        "directions",
-        "google"
-      ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-google-maps"
-        ],
-        "env": {
-          "GOOGLE_MAPS_API_KEY": "{GOOGLE_MAPS_API_KEY}"
-        }
-      }
+      "installed": true
     },
     {
       "name": "trello",
-      "display": "Trello MCP",
-      "description": "Manage Trello boards, lists and cards — create, move and update kanban items",
+      "type": "mcp-server",
       "category": "productivity",
-      "tags": [
-        "trello",
-        "kanban",
-        "boards",
-        "project-management"
+      "description": "Manage Trello boards, lists and cards — create, move and update kanban items",
+      "command": "python3",
+      "args": [
+        "-m",
+        "trello_mcp_server"
       ],
-      "repo": "https://github.com/m0xai/trello-mcp-server",
-      "mcp_config": {
-        "command": "python3",
-        "args": [
-          "-m",
-          "trello_mcp_server"
-        ],
-        "env": {
-          "TRELLO_API_KEY": "{TRELLO_API_KEY}",
-          "TRELLO_TOKEN": "{TRELLO_TOKEN}"
-        }
-      }
+      "installed": true,
+      "env_required": [
+        "TRELLO_API_KEY",
+        "TRELLO_TOKEN"
+      ]
+    },
+    {
+      "name": "sequential-thinking",
+      "type": "mcp-server",
+      "category": "code",
+      "description": "Dynamic and reflective problem-solving through structured thought sequences",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "installed": true
+    },
+    {
+      "name": "e2b",
+      "type": "mcp-server",
+      "category": "code",
+      "description": "Run any code (Python, JS, bash) in secure cloud sandboxes without local setup",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@e2b/mcp-server"
+      ],
+      "installed": true,
+      "env_required": [
+        "E2B_API_KEY"
+      ]
+    },
+    {
+      "name": "desktop-commander",
+      "type": "mcp-server",
+      "category": "system",
+      "description": "Execute shell commands, manage processes, diff and edit files on Windows and Linux",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@wonderwhy-er/desktop-commander"
+      ],
+      "installed": true
+    },
+    {
+      "name": "docker",
+      "type": "mcp-server",
+      "category": "system",
+      "description": "Run and manage Docker containers, compose stacks, inspect logs and images",
+      "command": "npx",
+      "args": [
+        "-y",
+        "docker-mcp"
+      ],
+      "installed": true
+    },
+    {
+      "name": "kubernetes",
+      "type": "mcp-server",
+      "category": "system",
+      "description": "Connect to Kubernetes cluster — manage pods, deployments, services and namespaces",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-server-kubernetes"
+      ],
+      "installed": true
+    },
+    {
+      "name": "cloudflare",
+      "type": "mcp-server",
+      "category": "system",
+      "description": "Deploy, configure and interrogate resources on the Cloudflare developer platform",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@cloudflare/mcp-server-cloudflare"
+      ],
+      "installed": true,
+      "env_required": [
+        "CLOUDFLARE_API_TOKEN"
+      ]
+    },
+    {
+      "name": "playwright",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Control a real browser: navigate, click, fill forms, screenshot, extract content from any site",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "installed": true
+    },
+    {
+      "name": "puppeteer",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Headless Chrome: navigate, screenshot, scrape and interact with web pages",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "installed": true
+    },
+    {
+      "name": "firecrawl",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Extract structured web data — crawl sites, convert to markdown, handle JS-heavy pages",
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "installed": true,
+      "env_required": [
+        "FIRECRAWL_API_KEY"
+      ]
+    },
+    {
+      "name": "exa",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Neural search engine optimised for AI agents — semantic and keyword search over the web",
+      "command": "npx",
+      "args": [
+        "-y",
+        "exa-mcp-server"
+      ],
+      "installed": true,
+      "env_required": [
+        "EXA_API_KEY"
+      ]
+    },
+    {
+      "name": "tavily",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Real-time web search and content extraction optimised for AI agents",
+      "command": "npx",
+      "args": [
+        "-y",
+        "tavily-mcp@0.1.4"
+      ],
+      "installed": true,
+      "env_required": [
+        "TAVILY_API_KEY"
+      ]
+    },
+    {
+      "name": "apify",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Use 3000+ pre-built cloud scrapers to extract data from websites, e-commerce and social media",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apify/actors-mcp-server"
+      ],
+      "installed": true,
+      "env_required": [
+        "APIFY_TOKEN"
+      ]
+    },
+    {
+      "name": "agentql",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Get structured data from unstructured web pages using natural language selectors",
+      "command": "npx",
+      "args": [
+        "-y",
+        "agentql-mcp"
+      ],
+      "installed": true,
+      "env_required": [
+        "AGENTQL_API_KEY"
+      ]
+    },
+    {
+      "name": "bright-data",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Access and interact with any public web data — scraping infrastructure with proxy rotation",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@brightdata/mcp"
+      ],
+      "installed": true,
+      "env_required": [
+        "BRIGHTDATA_API_TOKEN"
+      ]
+    },
+    {
+      "name": "a2asearch",
+      "type": "mcp-server",
+      "category": "browser",
+      "description": "Search 4800+ MCP servers, AI agents and CLI tools from a single index",
+      "command": "npx",
+      "args": [
+        "-y",
+        "a2asearch-mcp"
+      ],
+      "installed": true
+    },
+    {
+      "name": "postgres",
+      "type": "mcp-server",
+      "category": "data",
+      "description": "Connect and query PostgreSQL databases — schema inspection, read/write queries",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://localhost/mydb"
+      ],
+      "installed": true
+    },
+    {
+      "name": "mongodb",
+      "type": "mcp-server",
+      "category": "data",
+      "description": "Connect to MongoDB Atlas — query collections, manage documents and indexes",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mongodb-js/mongodb-mcp-server"
+      ],
+      "installed": true,
+      "env_required": [
+        "MDB_MCP_CONNECTION_STRING"
+      ]
+    },
+    {
+      "name": "supabase",
+      "type": "mcp-server",
+      "category": "data",
+      "description": "Manage Supabase projects — database queries, auth, edge functions, storage via API",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase",
+        "--supabase-access-token",
+        "{SUPABASE_ACCESS_TOKEN}"
+      ],
+      "installed": true
+    },
+    {
+      "name": "memory",
+      "type": "mcp-server",
+      "category": "text",
+      "description": "Persistent knowledge graph memory — agents save and recall facts across sessions",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "installed": true
+    },
+    {
+      "name": "context7",
+      "type": "mcp-server",
+      "category": "text",
+      "description": "Fetch up-to-date library documentation and code examples directly into agent context",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "installed": true
+    },
+    {
+      "name": "notion",
+      "type": "mcp-server",
+      "category": "productivity",
+      "description": "Official Notion MCP — read, write, search pages and databases in your Notion workspace",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@notionhq/notion-mcp-server"
+      ],
+      "installed": true,
+      "env_required": [
+        "OPENAPI_MCP_HEADERS"
+      ]
+    },
+    {
+      "name": "slack",
+      "type": "mcp-server",
+      "category": "productivity",
+      "description": "Read and post messages, search Slack channels and workspaces via bot token",
+      "command": "npx",
+      "args": [
+        "-y",
+        "slack-mcp-server"
+      ],
+      "installed": true,
+      "env_required": [
+        "SLACK_BOT_TOKEN"
+      ]
+    },
+    {
+      "name": "linear",
+      "type": "mcp-server",
+      "category": "productivity",
+      "description": "Manage Linear projects — create and update issues, search, manage cycles",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@tacticlaunch/mcp-linear"
+      ],
+      "installed": true,
+      "env_required": [
+        "LINEAR_API_TOKEN"
+      ]
+    },
+    {
+      "name": "todoist",
+      "type": "mcp-server",
+      "category": "productivity",
+      "description": "Full Todoist REST API integration — manage tasks, projects, labels and filters",
+      "command": "npx",
+      "args": [
+        "-y",
+        "todoist-mcp-server"
+      ],
+      "installed": true,
+      "env_required": [
+        "TODOIST_API_TOKEN"
+      ]
+    },
+    {
+      "name": "google-drive",
+      "type": "mcp-server",
+      "category": "productivity",
+      "description": "Read, search and manage Google Drive files and folders",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gdrive"
+      ],
+      "installed": true
+    },
+    {
+      "name": "google-maps",
+      "type": "mcp-server",
+      "category": "productivity",
+      "description": "Geocoding, directions, place search and distance matrix via Google Maps API",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-google-maps"
+      ],
+      "installed": true,
+      "env_required": [
+        "GOOGLE_MAPS_API_KEY"
+      ]
     },
     {
       "name": "everything",
-      "display": "Everything (test/reference) MCP",
-      "description": "Reference server with prompts, resources and tools — useful for testing MCP integrations",
+      "type": "mcp-server",
       "category": "productivity",
-      "tags": [
-        "test",
-        "reference",
-        "debug",
-        "official"
+      "description": "Reference server with prompts, resources and tools — useful for testing MCP integrations",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-everything"
       ],
-      "repo": "https://github.com/modelcontextprotocol/servers",
-      "mcp_config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-everything"
-        ]
-      }
+      "installed": true
+    },
+    {
+      "name": "filesystem",
+      "type": "mcp-server",
+      "category": "code",
+      "description": "Read, write, move, search files and directories with configurable path access control",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\elize"
+      ],
+      "installed": true
+    },
+    {
+      "name": "git",
+      "type": "mcp-server",
+      "category": "code",
+      "description": "Full git operations: log, diff, commit, branch, status, blame via MCP",
+      "command": "uvx",
+      "args": [
+        "mcp-server-git",
+        "--repository",
+        "C:\\MCPToolkit"
+      ],
+      "installed": true
+    },
+    {
+      "name": "sqlite",
+      "type": "mcp-server",
+      "category": "data",
+      "description": "Query, create and manage SQLite databases — full SQL support and schema inspection",
+      "command": "uvx",
+      "args": [
+        "mcp-server-sqlite",
+        "--db-path",
+        "C:\\Users\\elize\\data.db"
+      ],
+      "installed": true
     }
   ]
 }
