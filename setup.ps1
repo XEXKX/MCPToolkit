@@ -13,10 +13,18 @@ Write-Host "`n[2/3] Instaluji Python MCP servery..." -ForegroundColor Yellow
 pip install -r requirements.txt
 if ($LASTEXITCODE -ne 0) { Write-Host "pip install selhal!" -ForegroundColor Red; exit 1 }
 
-# 3. zkopiruj mcp.json do Claude
-Write-Host "`n[3/3] Kopíruji mcp.json do Claude..." -ForegroundColor Yellow
-$dest = "$env:USERPROFILE\.claude\mcp.json"
-Copy-Item ".\mcp.json" $dest -Force
-Write-Host "Zkopírováno do $dest" -ForegroundColor Green
+# 3. vloz mcpServers do settings.json
+Write-Host "`n[3/3] Registruji MCP servery do Claude settings.json..." -ForegroundColor Yellow
+$settingsPath = "$env:USERPROFILE\.claude\settings.json"
+$mcpServers = (Get-Content ".\mcp.json" | ConvertFrom-Json).mcpServers
+
+if (Test-Path $settingsPath) {
+    $settings = Get-Content $settingsPath | ConvertFrom-Json
+} else {
+    $settings = [PSCustomObject]@{}
+}
+$settings | Add-Member -NotePropertyName "mcpServers" -NotePropertyValue $mcpServers -Force
+$settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath -Encoding UTF8
+Write-Host "Zaregistrováno do $settingsPath" -ForegroundColor Green
 
 Write-Host "`nHotovo! Restartuj Claude Code." -ForegroundColor Green
