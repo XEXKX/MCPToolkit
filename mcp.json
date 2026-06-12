@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "MCPToolkit": {
-      "command": "python3",
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
       "args": [
         "C:\\MCPToolkit\\mcp-server\\server.py"
       ],
@@ -26,18 +26,12 @@
       ]
     },
     "excel-mcp": {
-      "command": "python3",
-      "args": [
-        "-m",
-        "excel_mcp_server"
-      ]
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\excel-mcp-server.exe",
+      "args": []
     },
     "duckdb": {
-      "command": "python3",
-      "args": [
-        "-m",
-        "mcp_server_motherduck"
-      ],
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\mcp-server-motherduck.exe",
+      "args": [],
       "env": {
         "motherduck_token": "{MOTHERDUCK_TOKEN}"
       }
@@ -64,22 +58,16 @@
       }
     },
     "meilisearch": {
-      "command": "python3",
-      "args": [
-        "-m",
-        "meilisearch_mcp"
-      ],
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\meilisearch-mcp.exe",
+      "args": [],
       "env": {
         "MEILI_HTTP_ADDR": "{MEILI_URL}",
         "MEILI_MASTER_KEY": "{MEILI_MASTER_KEY}"
       }
     },
     "snowflake": {
-      "command": "python3",
-      "args": [
-        "-m",
-        "mcp_snowflake_server"
-      ],
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\mcp_snowflake_server.exe",
+      "args": [],
       "env": {
         "SNOWFLAKE_ACCOUNT": "{SNOWFLAKE_ACCOUNT}",
         "SNOWFLAKE_USER": "{SNOWFLAKE_USER}",
@@ -87,36 +75,24 @@
       }
     },
     "everything-search": {
-      "command": "python3",
-      "args": [
-        "-m",
-        "everything_mcp"
-      ]
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\everything-mcp.exe",
+      "args": []
     },
     "obsidian": {
-      "command": "python3",
-      "args": [
-        "-m",
-        "mcp_obsidian"
-      ],
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\mcp-obsidian.exe",
+      "args": [],
       "env": {
         "OBSIDIAN_API_KEY": "{OBSIDIAN_TOKEN}",
         "OBSIDIAN_HOST": "http://localhost:27123"
       }
     },
     "mcp-pdf-reader": {
-      "command": "python3",
-      "args": [
-        "-m",
-        "mcp_pdf_reader"
-      ]
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\mcp-pdf-reader.exe",
+      "args": []
     },
     "trello": {
-      "command": "python3",
-      "args": [
-        "-m",
-        "trello_mcp_server"
-      ],
+      "command": "C:\\Users\\elize\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\trello-mcp-server.exe",
+      "args": [],
       "env": {
         "TRELLO_API_KEY": "{TRELLO_API_KEY}",
         "TRELLO_TOKEN": "{TRELLO_TOKEN}"
