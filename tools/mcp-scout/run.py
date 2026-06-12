@@ -69,16 +69,19 @@ def action_search(keyword: str):
     for s in results:
         print(f"  {s['name']:<22} [{s['category']}]  {s['description'][:70]}")
 
+def _json_escape(s: str) -> str:
+    """Escape string so it is safe to embed as a JSON value (no raw backslashes)."""
+    return s.replace("\\", "\\\\")
+
 def resolve_placeholders(cfg: dict, name: str) -> dict:
     """Nahrad {placeholder} v mcp_config hodnotami od uzivatele nebo defaults."""
     cfg_str = json.dumps(cfg)
-    # Jednoduche defaults
     defaults = {
-        "{allowed_dirs}": str(Path.home()),
-        "{repo_path}":    str(TOOLKIT_ROOT),
-        "{db_path}":      str(Path.home() / "data.db"),
+        "{allowed_dirs}": _json_escape(str(Path.home())),
+        "{repo_path}":    _json_escape(str(TOOLKIT_ROOT)),
+        "{db_path}":      _json_escape(str(Path.home() / "data.db")),
         "{connection_string}": "postgresql://localhost/mydb",
-        "{install_dir}":  str(TOOLKIT_ROOT / "external" / name),
+        "{install_dir}":  _json_escape(str(TOOLKIT_ROOT / "external" / name)),
         "{GITHUB_TOKEN}": os.environ.get("GITHUB_TOKEN", "YOUR_GITHUB_TOKEN"),
     }
     for placeholder, value in defaults.items():
@@ -87,7 +90,7 @@ def resolve_placeholders(cfg: dict, name: str) -> dict:
 
 def install_npm(package: str, name: str) -> bool:
     print(f"Instaluji npm balicek: {package}")
-    r = subprocess.run(["npm", "install", "-g", package], capture_output=True, text=True)
+    r = subprocess.run(f"npm install -g {package}", shell=True, capture_output=True, text=True)
     if r.returncode != 0:
         print(f"npm install selhal: {r.stderr[:200]}")
         return False
@@ -104,7 +107,7 @@ def install_pip(package: str) -> bool:
 
 def install_uvx(package: str) -> bool:
     print(f"Instaluji uvx balicek: {package}")
-    r = subprocess.run(["uvx", package, "--help"], capture_output=True, text=True, timeout=30)
+    r = subprocess.run(f"uvx {package} --help", shell=True, capture_output=True, text=True, timeout=30)
     return True  # uvx installs on demand
 
 def git_clone_external(repo: str, name: str) -> Path | None:
@@ -115,8 +118,8 @@ def git_clone_external(repo: str, name: str) -> Path | None:
     dest.parent.mkdir(parents=True, exist_ok=True)
     url = f"https://github.com/{repo}.git"
     print(f"Klonuji {url}...")
-    r = subprocess.run(["git", "clone", "--depth=1", url, str(dest)],
-                       capture_output=True, text=True, timeout=120)
+    r = subprocess.run(f'git clone --depth=1 {url} "{dest}"',
+                       shell=True, capture_output=True, text=True, timeout=120)
     if r.returncode != 0:
         print(f"git clone selhal: {r.stderr[:200]}")
         return None
