@@ -1,0 +1,15 @@
+mcp-server-fetch
+dbt-mcp
+mcp-server-time
+mcp-server-git
+mcp-server-sqlite
+excel-mcp-server
+mcp-server-motherduck
+mcp-server-qdrant
+mcp-clickhouse
+meilisearch-mcp
+mcp-snowflake-server
+everything-mcp
+mcp-obsidian
+mcp-pdf-reader
+trello-mcp-server
