@@ -4,6 +4,7 @@ __pycache__/
 venv/
 *.egg-info/
 .env
+.claude.json.backup
 desktop.ini
 .DS_Store
 node_modules/
