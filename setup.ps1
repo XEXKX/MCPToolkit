@@ -9,7 +9,7 @@ Usage:
     .\setup.ps1 -SkipInstall       # only re-register config, no npm/pip install
 #>
 param(
-    [ValidateSet("claude-code","cursor","claude-desktop")]
+    [ValidateSet("claude-code","cursor","claude-desktop","hermes")]
     [string]$Client = "claude-code",
     [switch]$SkipInstall
 )
@@ -88,6 +88,11 @@ $mcpServers = ($mcpRaw | ConvertFrom-Json).mcpServers
 
 # ----- 4. Registrace do klienta -----
 Write-Host "`n[4/4] Registruji $($mcpServers.PSObject.Properties.Name.Count) serveru do '$Client'..." -ForegroundColor Yellow
+
+if ($Client -eq "hermes") {
+    & "$PSScriptRoot\install-hermes.ps1" -SkipInstall
+    exit $LASTEXITCODE
+}
 
 switch ($Client) {
     "claude-code" {

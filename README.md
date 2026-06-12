@@ -30,6 +30,7 @@ Then restart your MCP client. `claude mcp list` should show 30+ Connected server
 .\setup.ps1 -Client claude-code       # ~/.claude.json (default)
 .\setup.ps1 -Client cursor            # ~/.cursor/mcp.json
 .\setup.ps1 -Client claude-desktop    # %APPDATA%\Claude\claude_desktop_config.json
+.\setup.ps1 -Client hermes            # $HERMES_HOME/config.yaml (mcp_servers key)
 ```
 
 Existing config is backed up to `<path>.backup` before being overwritten.
