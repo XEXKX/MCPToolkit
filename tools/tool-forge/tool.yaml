@@ -1,0 +1,33 @@
+name: tool-forge
+description: "Generates a new ready-to-use tool from a natural language goal. Produces tool.yaml + implementation + registers in manifest."
+category: meta
+inputs:
+  - name: goal
+    type: string
+    required: true
+    description: "What should the tool do? Natural language."
+  - name: start
+    type: string
+    required: false
+    description: "Starting state — available inputs, data sources, environment"
+  - name: runtime
+    type: string
+    required: false
+    default: ps1
+    description: "Implementation language: ps1 | py | js"
+  - name: constraints
+    type: string
+    required: false
+    description: "Restrictions, requirements, dependencies to avoid"
+  - name: model
+    type: string
+    required: false
+    default: claude-sonnet-4-6
+    description: "Claude model for generation"
+outputs: "New folder in tools/, registered in manifest.json, committed to git"
+call: "python {tool_dir}/run.py --goal {goal} --start {start} --runtime {runtime} --constraints {constraints}"
+tags: [meta, generation, automation]
+tested: true
+examples:
+  - "python run.py --goal 'Stáhni obrázky z URL do složky' --runtime ps1"
+  - "python run.py --goal 'Parsuj CSV a vrať statistiky' --runtime py"

@@ -1,0 +1,33 @@
+name: new-git-repo
+description: "Initializes a local folder as a git repo, optionally creates GitHub repo via API, and sets up auto-push watcher with Windows Startup entry."
+category: git
+inputs:
+  - name: path
+    type: string
+    required: true
+    description: "Local folder path to initialize"
+  - name: repo_name
+    type: string
+    required: false
+    description: "GitHub repo name (default: folder name)"
+  - name: token
+    type: string
+    required: false
+    description: "GitHub PAT with repo scope (or GITHUB_TOKEN env var)"
+  - name: private
+    type: bool
+    required: false
+    default: false
+    description: "Create private GitHub repo"
+  - name: skip_github
+    type: bool
+    required: false
+    default: false
+    description: "Skip GitHub API, local git only"
+outputs: "Git initialized, GitHub repo created, auto-push watcher configured, Windows Startup entry added"
+call: "pwsh -File {tool_dir}/run.ps1 -Path {path} -RepoName {repo_name} -Token {token}"
+tags: [git, github, automation, setup]
+tested: true
+examples:
+  - "new-git-repo -Path C:\\MujProjekt -Token ghp_abc123"
+  - "new-git-repo -Path C:\\MujProjekt -SkipGitHub"

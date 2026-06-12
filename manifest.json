@@ -1,0 +1,51 @@
+{
+  "name": "MCPToolkit",
+  "version": "1.0.0",
+  "description": "Personal tool library — portable across AI agents via MCP",
+  "author": "XEXKX",
+  "repo": "https://github.com/XEXKX/MCPToolkit",
+  "tools": [
+    {
+      "name": "tool-forge",
+      "description": "Generates a new ready-to-use tool from a goal description. Produces tool.yaml + implementation + registers in manifest.",
+      "category": "meta",
+      "inputs": [
+        {"name": "goal",         "type": "string", "required": true,  "description": "What should the tool do? (natural language)"},
+        {"name": "start",        "type": "string", "required": false, "description": "Starting state / available inputs"},
+        {"name": "runtime",      "type": "string", "required": false, "description": "ps1 | py | js  (default: ps1)"},
+        {"name": "model",        "type": "string", "required": false, "description": "Claude model to use (default: claude-sonnet-4-6)"},
+        {"name": "constraints",  "type": "string", "required": false, "description": "Any restrictions or requirements"}
+      ],
+      "outputs": "New tool folder in tools/, registered in manifest.json, committed to git",
+      "call": "python {tool_dir}/run.py --goal {goal} --start {start} --runtime {runtime}",
+      "tool_dir": "tools/tool-forge",
+      "tags": ["meta", "generation", "automation"],
+      "tested": true,
+      "examples": [
+        "tool-forge --goal 'Stáhni všechny obrázky z URL a ulož je do složky' --runtime ps1",
+        "tool-forge --goal 'Analyzuj Python soubor a vrať seznam funkcí' --runtime py"
+      ]
+    },
+    {
+      "name": "new-git-repo",
+      "description": "Initializes a local folder as a git repo, creates GitHub repository, sets up auto-push watcher and Windows Startup entry.",
+      "category": "git",
+      "inputs": [
+        {"name": "path",       "type": "string", "required": true,  "description": "Local folder path"},
+        {"name": "repo_name",  "type": "string", "required": false, "description": "GitHub repo name (default: folder name)"},
+        {"name": "token",      "type": "string", "required": false, "description": "GitHub PAT (or set GITHUB_TOKEN env var)"},
+        {"name": "private",    "type": "bool",   "required": false, "description": "Create private repo (default: false)"},
+        {"name": "skip_github","type": "bool",   "required": false, "description": "Local git only, skip GitHub API"}
+      ],
+      "outputs": "Git repo initialized, GitHub repo created, auto-push configured, startup entry added",
+      "call": "pwsh -File {tool_dir}/run.ps1 -Path {path} -RepoName {repo_name} -Token {token}",
+      "tool_dir": "tools/new-git-repo",
+      "tags": ["git", "github", "automation", "setup"],
+      "tested": true,
+      "examples": [
+        "new-git-repo --path C:\\MujProjekt --token ghp_abc123",
+        "new-git-repo --path C:\\MujProjekt --skip_github"
+      ]
+    }
+  ]
+}
