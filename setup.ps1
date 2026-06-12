@@ -1,5 +1,8 @@
 Write-Host "=== MCPToolkit Setup ===" -ForegroundColor Cyan
 
+# Vždy pracuj ve složce repozitáře, bez ohledu odkud je skript spuštěn
+Set-Location $PSScriptRoot
+
 # 1. npm servery
 Write-Host "`n[1/3] Instaluji npm MCP servery..." -ForegroundColor Yellow
 npm install
